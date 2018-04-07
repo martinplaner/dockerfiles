@@ -1,6 +1,6 @@
 FROM alpine AS build-env
 MAINTAINER Martin Planer
-ENV VERSION 2.4.4
+ENV VERSION 2.5.2
 
 RUN apk update && apk add gcc g++ musl-dev make cmake libuv-dev
 
