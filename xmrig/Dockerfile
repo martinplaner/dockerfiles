@@ -1,8 +1,8 @@
 FROM alpine AS build-env
 MAINTAINER Martin Planer
-ENV VERSION 2.6.4
+ENV VERSION 2.8.3
 
-RUN apk update && apk add gcc g++ musl-dev make cmake libuv-dev
+RUN apk update && apk add gcc g++ musl-dev make cmake libuv-dev openssl-dev
 
 ADD https://github.com/xmrig/xmrig/archive/v$VERSION.tar.gz /
 RUN tar xzf v$VERSION.tar.gz
@@ -17,7 +17,7 @@ RUN mv /xmrig-$VERSION/build/xmrig /xmrig
 
 FROM alpine
 
-RUN apk update && apk upgrade && apk add libuv
+RUN apk update && apk upgrade && apk add libuv openssl
 
 COPY --from=build-env /xmrig /xmrig
 
